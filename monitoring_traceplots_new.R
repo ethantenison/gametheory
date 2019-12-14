@@ -9,6 +9,7 @@ library("grid")
 library("dplyr")
 library("imager")
 library("fs")
+library(png)
 
 u.lambda <- function(w1, w2, w3, w4, beta, lambda){
         alpha.star <- (-(1-lambda)*beta*w1 + (1-lambda)*beta*w2 - lambda*beta*w3 - (1-beta)*w3 + lambda*beta*w4 + (1-beta)*w4)/((lambda*w1) - (lambda*w2) - (lambda*w3) + (lambda*w4)) # This is the formula for the slope of u(...) for different values of lambda.
@@ -220,8 +221,32 @@ data <- data %>% bind_rows(data_gameA.lo) %>% bind_rows(data_gameA.med) %>% bind
 files <- list.files(path = ".", pattern = "*.png", full.names=TRUE)
 all_im <- lapply(files, load.image )
 
-test <- grid.arrange(grobs = all_im, ncol = 5)
-test
+merge.png.pdf (pdfFile = "~/test.pdf", pngFiles = all_im, deletePngFiles = F)
+
+plot1 <- readPNG('./trace-gameA-hi.png')
+plot2 <- readPNG('./trace-gameA-medhi.png')
+plot3 <- readPNG('./trace-gameA-medium.png')
+plot4 <- readPNG('./trace-gameA-medlo.png')
+plot5 <- readPNG('./trace-gameA-lo.png')
+plot6 <- readPNG('./trace-gameB-hi.png')
+plot7 <- readPNG('./trace-gameB-medhi.png')
+plot8 <- readPNG('./trace-gameB-medium.png')
+plot9 <- readPNG('./trace-gameB-medlo.png')
+plot10 <- readPNG('./trace-gameB-lo.png')
+plot11 <- readPNG('./trace-gameC-hi.png')
+plot12 <- readPNG('./trace-gameC-medhi.png')
+plot13 <- readPNG('./trace-gameC-medium.png')
+plot14 <- readPNG('./trace-gameB-medlo.png')
+plot15 <- readPNG('./trace-gameC-lo.png')
+plot16 <- readPNG('./trace-gameD-hi.png')
+plot17 <- readPNG('./trace-gameD-medhi.png')
+plot18 <- readPNG('./trace-gameD-medium.png')
+plot19 <- readPNG('./trace-gameC-medlo.png')
+plot20 <- readPNG('./trace-gameD-medhi.png')
+
+test <- list(plot1,plot2,plot3,plot4,plot5,plot6,plot7,plot8,plot9,plot10,plot11,plot12,plot13,plot14,plot15,plot16,plot17,plot18,plot19,plot20)
+
+test <- lapply(test, rasterGrob())
 
 
 ### Combining individual graphs (currently doesn't work right!)
