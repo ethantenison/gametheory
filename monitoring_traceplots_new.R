@@ -16,7 +16,7 @@ u.lambda <- function(w1, w2, w3, w4, beta, lambda){
         return(alpha.star)
 }
 
-titles <- c("Basic collective action: No Monitoring", "Collective and Personal Monitoring Benefits", "Only Collective Monitoring Benefits")
+titles <- c("Basic collective action: No Monitoring", "Only Collective Monitoring Benefits", "Only Private Monitoring Benefits", "Collective and Private Monitoring Benefits")
 
 lambda <- seq(0,1,.0001)
 
@@ -143,110 +143,44 @@ for(a in seq(1,4,1)){
         }
 }
 
-#Extracting the data from the game lists to create one dataframe
-data_gameA.hi <- gameA.hi[["data"]]
-data_gameA.hi <- mutate(data_gameA.hi, game = "gameA_hi")
-
-data_gameA.lo <- gameA.lo[["data"]]
-data_gameA.lo <- mutate(data_gameA.lo, game = "gameA_lo")
-
-data_gameA.med <- gameA.med[["data"]]
-data_gameA.med <- mutate(data_gameA.med, game = "gameA_med")
-
-data_gameA.medhi <- gameA.medhi[["data"]]
-data_gameA.medhi <- mutate(data_gameA.medhi, game = "gameA_medhi")
-
-data_gameA.medlo <- gameA.medlo[["data"]]
-data_gameA.medlo <- mutate(data_gameA.medlo, game = "gameA_medlo")
-
-data_gameB.hi <- gameB.hi[["data"]]
-data_gameB.hi <- mutate(data_gameB.hi, game = "gameB_hi")
-
-data_gameB.lo <- gameB.lo[["data"]]
-data_gameB.lo <- mutate(data_gameB.lo, game = "gameB_lo")
-
-data_gameB.med <- gameB.med[["data"]]
-data_gameB.med <- mutate(data_gameB.med, game = "gameB_med")
-
-data_gameB.medhi <- gameB.medhi[["data"]]
-data_gameB.medhi <- mutate(data_gameB.medhi, game = "gameB_medhi")
-
-data_gameB.medlo <- gameB.medlo[["data"]]
-data_gameB.medlo <- mutate(data_gameB.medlo, game = "gameB_medlo")
-
-data_gameC.hi <- gameC.hi[["data"]]
-data_gameC.hi <- mutate(data_gameC.hi, game = "gameC_hi")
-
-data_gameC.lo <- gameC.lo[["data"]]
-data_gameC.lo <- mutate(data_gameC.lo, game = "gameC_lo")
-
-data_gameC.med <- gameC.med[["data"]]
-data_gameC.med <- mutate(data_gameC.med, game = "gameC_med")
-
-data_gameC.medhi <- gameC.medhi[["data"]]
-data_gameC.medhi <- mutate(data_gameC.medhi, game = "gameC_medhi")
-
-data_gameC.medlo <- gameC.medlo[["data"]]
-data_gameC.medlo <- mutate(data_gameC.medlo, game = "gameC_medlo")
-
-data_gameD.hi <- gameD.hi[["data"]]
-data_gameD.hi <- mutate(data_gameD.hi, game = "gameD_hi")
-
-data_gameD.lo <- gameD.lo[["data"]]
-data_gameD.lo <- mutate(data_gameD.lo, game = "gameD_lo")
-
-data_gameD.med <- gameD.med[["data"]]
-data_gameD.med <- mutate(data_gameD.med, game = "gameD_med")
-
-data_gameD.medhi <- gameD.medhi[["data"]]
-data_gameD.medhi <- mutate(data_gameD.medhi, game = "gameD_medhi")
-
-data_gameD.medlo <- gameD.medlo[["data"]]
-data_gameD.medlo <- mutate(data_gameD.medlo, game = "gameD_medlo")
-
-#Merging all the data frames together
-
-data <- data_gameA.hi
-
-data <- data %>% bind_rows(data_gameA.lo) %>% bind_rows(data_gameA.med) %>% bind_rows(data_gameA.medhi) %>%
-        bind_rows(data_gameA.medlo) %>% bind_rows(data_gameB.hi) %>% bind_rows(data_gameB.lo) %>%
-        bind_rows(data_gameB.med) %>% bind_rows(data_gameB.medhi) %>% bind_rows(data_gameB.medlo) %>%
-        bind_rows(data_gameC.hi) %>% bind_rows(data_gameC.lo) %>% bind_rows(data_gameC.med) %>%
-        bind_rows(data_gameC.medhi) %>% bind_rows(data_gameC.medlo) %>% bind_rows(data_gameD.hi) %>%
-        bind_rows(data_gameD.lo) %>% bind_rows(data_gameD.med) %>% bind_rows(data_gameD.medhi) %>%
-        bind_rows(data_gameD.medlo)            
 
 #That actually blows so I'm going to try and print them all together as images
 
-files <- list.files(path = ".", pattern = "*.png", full.names=TRUE)
-all_im <- lapply(files, load.image )
 
-merge.png.pdf (pdfFile = "~/test.pdf", pngFiles = all_im, deletePngFiles = F)
+plot1 <- rasterGrob(readPNG('./trace-gameA-hi.png'))
+plot2 <- rasterGrob(readPNG('./trace-gameA-medhi.png'))
+plot3 <- rasterGrob(readPNG('./trace-gameA-medium.png'))
+plot4 <- rasterGrob(readPNG('./trace-gameA-medlo.png'))
+plot5 <- rasterGrob(readPNG('./trace-gameA-lo.png'))
+plot6 <- rasterGrob(readPNG('./trace-gameB-hi.png'))
+plot7 <- rasterGrob(readPNG('./trace-gameB-medhi.png'))
+plot8 <- rasterGrob(readPNG('./trace-gameB-medium.png'))
+plot9 <- rasterGrob(readPNG('./trace-gameB-medlo.png'))
+plot10 <- rasterGrob(readPNG('./trace-gameB-lo.png'))
+plot11 <- rasterGrob(readPNG('./trace-gameC-hi.png'))
+plot12 <- rasterGrob(readPNG('./trace-gameC-medhi.png'))
+plot13 <- rasterGrob(readPNG('./trace-gameC-medium.png'))
+plot14 <- rasterGrob(readPNG('./trace-gameB-medlo.png'))
+plot15 <- rasterGrob(readPNG('./trace-gameC-lo.png'))
+plot16 <- rasterGrob(readPNG('./trace-gameD-hi.png'))
+plot17 <- rasterGrob(readPNG('./trace-gameD-medhi.png'))
+plot18 <- rasterGrob(readPNG('./trace-gameD-medium.png'))
+plot19 <- rasterGrob(readPNG('./trace-gameC-medlo.png'))
+plot20 <- rasterGrob(readPNG('./trace-gameD-medhi.png'))
 
-plot1 <- readPNG('./trace-gameA-hi.png')
-plot2 <- readPNG('./trace-gameA-medhi.png')
-plot3 <- readPNG('./trace-gameA-medium.png')
-plot4 <- readPNG('./trace-gameA-medlo.png')
-plot5 <- readPNG('./trace-gameA-lo.png')
-plot6 <- readPNG('./trace-gameB-hi.png')
-plot7 <- readPNG('./trace-gameB-medhi.png')
-plot8 <- readPNG('./trace-gameB-medium.png')
-plot9 <- readPNG('./trace-gameB-medlo.png')
-plot10 <- readPNG('./trace-gameB-lo.png')
-plot11 <- readPNG('./trace-gameC-hi.png')
-plot12 <- readPNG('./trace-gameC-medhi.png')
-plot13 <- readPNG('./trace-gameC-medium.png')
-plot14 <- readPNG('./trace-gameB-medlo.png')
-plot15 <- readPNG('./trace-gameC-lo.png')
-plot16 <- readPNG('./trace-gameD-hi.png')
-plot17 <- readPNG('./trace-gameD-medhi.png')
-plot18 <- readPNG('./trace-gameD-medium.png')
-plot19 <- readPNG('./trace-gameC-medlo.png')
-plot20 <- readPNG('./trace-gameD-medhi.png')
 
-test <- list(plot1,plot2,plot3,plot4,plot5,plot6,plot7,plot8,plot9,plot10,plot11,plot12,plot13,plot14,plot15,plot16,plot17,plot18,plot19,plot20)
 
-test <- lapply(test, rasterGrob())
+combined <- grid.arrange(plot1,plot2,plot3,plot4,plot5,plot6,plot7,plot8,plot9,
+                         plot10,plot11,plot12,plot13,plot14,plot15,plot16,plot17,
+                         plot18,plot19,plot20, ncol = 5, nrow=4)
+
+
+grid.draw(combined)
+
+
+
+
+
 
 
 ### Combining individual graphs (currently doesn't work right!)
