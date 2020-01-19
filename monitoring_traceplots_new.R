@@ -81,13 +81,13 @@ for(a in seq(1,4,1)){
                         geom_segment(aes(x=xlim[b,a], xend=1, y=yvarying[b,a], yend=yvarying[b,a]), colour="black") +
                         geom_segment(aes(x=0, xend=1, y=ystable[b,a], yend=ystable[b,a]), colour="black") +
                         theme_minimal() +
-                        labs(title = titles[a], y = expression(alpha), x = expression(lambda)) +
+                        labs(title = titles[a], y = expression(paste("Rationality (",alpha,")")), x = expression(paste("Belief about Other(s)’ Rationality (", lambda, ")"))) +
                         theme(panel.grid.minor = element_blank(),
                               plot.title = element_text(hjust=0.5, size=30),
-                              axis.text=element_text(size=26),
+                              axis.text=element_text(size=20),
                               axis.title=element_text(size=30),
-                              axis.title.y=element_text(angle=0),
-                              axis.title.x=element_text(hjust=1, angle=0))
+                              axis.title.y=element_text(angle=-90, vjust = -1, size=20),
+                              axis.title.x=element_text(hjust=0.5, vjust = -1, angle=0, size=20))
                 fullplot
                 if (labels(games)[[2]][a] == "gameA") {
                         if (labels(beliefs)[b] == "lo") {
