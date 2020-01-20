@@ -147,32 +147,32 @@ for(a in seq(1,4,1)){
 #That actually blows so I'm going to try and print them all together as images
 
 
-plot1 <- rasterGrob(readPNG('./trace-gameA-hi.png'))
-plot2 <- rasterGrob(readPNG('./trace-gameA-medhi.png'))
-plot3 <- rasterGrob(readPNG('./trace-gameA-medium.png'))
-plot4 <- rasterGrob(readPNG('./trace-gameA-medlo.png'))
-plot5 <- rasterGrob(readPNG('./trace-gameA-lo.png'))
-plot6 <- rasterGrob(readPNG('./trace-gameB-hi.png'))
-plot7 <- rasterGrob(readPNG('./trace-gameB-medhi.png'))
-plot8 <- rasterGrob(readPNG('./trace-gameB-medium.png'))
-plot9 <- rasterGrob(readPNG('./trace-gameB-medlo.png'))
-plot10 <- rasterGrob(readPNG('./trace-gameB-lo.png'))
-plot11 <- rasterGrob(readPNG('./trace-gameC-hi.png'))
-plot12 <- rasterGrob(readPNG('./trace-gameC-medhi.png'))
-plot13 <- rasterGrob(readPNG('./trace-gameC-medium.png'))
-plot14 <- rasterGrob(readPNG('./trace-gameB-medlo.png'))
-plot15 <- rasterGrob(readPNG('./trace-gameC-lo.png'))
-plot16 <- rasterGrob(readPNG('./trace-gameD-hi.png'))
-plot17 <- rasterGrob(readPNG('./trace-gameD-medhi.png'))
-plot18 <- rasterGrob(readPNG('./trace-gameD-medium.png'))
-plot19 <- rasterGrob(readPNG('./trace-gameC-medlo.png'))
-plot20 <- rasterGrob(readPNG('./trace-gameD-medhi.png'))
+a_hi <- rasterGrob(readPNG('./trace-gameA-hi.png'))
+a_medhi <- rasterGrob(readPNG('./trace-gameA-medhi.png'))
+a_med <- rasterGrob(readPNG('./trace-gameA-medium.png'))
+a_medlo <- rasterGrob(readPNG('./trace-gameA-medlo.png'))
+a_lo <- rasterGrob(readPNG('./trace-gameA-lo.png'))
+b_hi <- rasterGrob(readPNG('./trace-gameB-hi.png'))
+b_medhi <- rasterGrob(readPNG('./trace-gameB-medhi.png'))
+b_med <- rasterGrob(readPNG('./trace-gameB-medium.png'))
+b_medlo <- rasterGrob(readPNG('./trace-gameB-medlo.png'))
+b_lo <- rasterGrob(readPNG('./trace-gameB-lo.png'))
+c_hi <- rasterGrob(readPNG('./trace-gameC-hi.png'))
+c_medhi <- rasterGrob(readPNG('./trace-gameC-medhi.png'))
+c_med <- rasterGrob(readPNG('./trace-gameC-medium.png'))
+c_medlo <- rasterGrob(readPNG('./trace-gameC-medlo.png'))
+c_lo <- rasterGrob(readPNG('./trace-gameC-lo.png'))
+d_hi <- rasterGrob(readPNG('./trace-gameD-hi.png'))
+d_medhi <- rasterGrob(readPNG('./trace-gameD-medhi.png'))
+d_med <- rasterGrob(readPNG('./trace-gameD-medium.png'))
+d_medlo <- rasterGrob(readPNG('./trace-gameD-medlo.png'))
+d_lo <- rasterGrob(readPNG('./trace-gameD-lo.png'))
 
 
 
-combined <- grid.arrange(plot1,plot2,plot3,plot4,plot5,plot6,plot7,plot8,plot9,
-                         plot10,plot11,plot12,plot13,plot14,plot15,plot16,plot17,
-                         plot18,plot19,plot20, ncol = 5, nrow=4)
+combined <- grid.arrange(a_hi, b_hi, c_hi, d_hi, a_medhi, b_medhi, c_medhi, d_medhi,
+                         a_med, b_med, c_med, d_med, a_medlo, b_medlo, c_medlo, d_medlo,
+                         a_lo, b_lo, c_lo, d_lo, ncol = 5, nrow=4)
 
 
 grid.draw(combined)
