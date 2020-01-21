@@ -16,7 +16,7 @@ u.lambda <- function(w1, w2, w3, w4, beta, lambda){
         return(alpha.star)
 }
 
-titles <- c("Basic collective action: No Monitoring", "Only Collective Monitoring Benefits", "Only Private Monitoring Benefits", "Collective and Private Monitoring Benefits")
+titles <- c("No Monitoring", "Only Collective Monitoring Benefits", "Only Private Monitoring Benefits", "Collective and Private Monitoring Benefits")
 
 lambda <- seq(0,1,.0001)
 
@@ -83,6 +83,7 @@ for(a in seq(1,4,1)){
                         theme_minimal() +
                         labs(title = titles[a], y = expression(paste("Rationality (",alpha,")")), x = expression(paste("Belief about Other(s)’ Rationality (", lambda, ")"))) +
                         theme(panel.grid.minor = element_blank(),
+                              plot.margin = unit(c(1,1,1,1), "in"),
                               plot.title = element_text(hjust=0.5, size=30),
                               axis.text=element_text(size=20),
                               axis.title=element_text(size=30),
@@ -167,15 +168,22 @@ d_medhi <- rasterGrob(readPNG('./trace-gameD-medhi.png'))
 d_med <- rasterGrob(readPNG('./trace-gameD-medium.png'))
 d_medlo <- rasterGrob(readPNG('./trace-gameD-medlo.png'))
 d_lo <- rasterGrob(readPNG('./trace-gameD-lo.png'))
+hi <- textGrob(expression(paste("High Initial Belief (",beta,")")), rot = -90, gp=gpar(fontsize=8))
+medhi <- textGrob(expression(paste("Medium High Initial Belief (",beta,")")), rot = -90, gp=gpar(fontsize=8))
+med <- textGrob(expression(paste("Medium Initial Belief (",beta,")")), rot = -90, gp=gpar(fontsize=8))
+medlo <- textGrob(expression(paste("Medium Low Initial Belief (",beta,")")), rot = -90, gp=gpar(fontsize=8))
+lo <- textGrob(expression(paste("Low Initial Belief (",beta,")")), rot = -90, gp=gpar(fontsize=8))
 
 
 
-combined <- grid.arrange(a_hi, b_hi, c_hi, d_hi, a_medhi, b_medhi, c_medhi, d_medhi,
-                         a_med, b_med, c_med, d_med, a_medlo, b_medlo, c_medlo, d_medlo,
-                         a_lo, b_lo, c_lo, d_lo, ncol = 5, nrow=4)
+
+plots <- arrangeGrob( hi, a_hi, b_hi, c_hi, d_hi, medhi, a_medhi, b_medhi, c_medhi, d_medhi,
+                   med, a_med, b_med, c_med, d_med, medlo, a_medlo, b_medlo, c_medlo, d_medlo,
+                  lo,  a_lo, b_lo, c_lo, d_lo, ncol = 5, nrow=5, widths = c(.25, 1,1,1,1))
 
 
-grid.draw(combined)
+
+ggsave(file="combined.pdf", plots, width = 10, height = 10)
 
 
 
